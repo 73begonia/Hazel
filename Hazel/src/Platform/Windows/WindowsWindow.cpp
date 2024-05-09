@@ -171,4 +171,5 @@ namespace Hazel {
 	{
 		return m_Data.VSync;
 	}
+
 }

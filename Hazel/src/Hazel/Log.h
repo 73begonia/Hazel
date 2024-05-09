@@ -5,6 +5,7 @@
 #include "spdlog/fmt/ostr.h"
 
 namespace Hazel {
+
 	class HAZEL_API Log
 	{
 	public:
@@ -16,6 +17,7 @@ namespace Hazel {
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;
 	};
+
 }
 
 // Core log macros
