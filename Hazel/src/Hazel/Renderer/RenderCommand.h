@@ -24,4 +24,5 @@ namespace Hazel {
 	private:
 		static RendererAPI* s_RendererAPI;
 	};
+
 }

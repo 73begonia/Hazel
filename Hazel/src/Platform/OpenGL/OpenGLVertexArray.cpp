@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 
 namespace Hazel {
-	
+
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
 	{
 		switch (type)
@@ -66,6 +66,7 @@ namespace Hazel {
 				(const void*)element.Offset);
 			index++;
 		}
+
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
@@ -76,4 +77,5 @@ namespace Hazel {
 
 		m_IndexBuffer = indexBuffer;
 	}
+
 }

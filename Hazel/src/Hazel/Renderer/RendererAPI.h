@@ -23,4 +23,5 @@ namespace Hazel {
 	private:
 		static API s_API;
 	};
+
 }
