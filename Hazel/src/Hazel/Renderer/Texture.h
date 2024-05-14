@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-#include "Hazel/Core.h"
+#include "Hazel/Core/Core.h"
 
 namespace Hazel {
 
