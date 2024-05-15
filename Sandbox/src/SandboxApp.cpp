@@ -52,7 +52,7 @@ public:
 		squareVB->SetLayout({
 			{ Hazel::ShaderDataType::Float3, "a_Position" },
 			{ Hazel::ShaderDataType::Float2, "a_TexCoord" }
-			});
+		});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -215,9 +215,7 @@ public:
 
 	~Sandbox()
 	{
-
 	}
-
 };
 
 Hazel::Application* Hazel::CreateApplication()

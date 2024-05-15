@@ -95,4 +95,5 @@ namespace Hazel {
 
 		return false;
 	}
+
 }

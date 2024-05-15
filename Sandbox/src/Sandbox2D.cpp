@@ -16,7 +16,6 @@ void Sandbox2D::OnAttach()
 
 void Sandbox2D::OnDetach()
 {
-
 }
 
 void Sandbox2D::OnUpdate(Hazel::Timestep ts)
