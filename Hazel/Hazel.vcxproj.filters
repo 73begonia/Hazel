@@ -87,6 +87,9 @@
     <ClInclude Include="src\Hazel\Core\MouseButtonCodes.h">
       <Filter>src\Hazel\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Hazel\Core\MouseCodes.h">
+      <Filter>src\Hazel\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Hazel\Core\Timestep.h">
       <Filter>src\Hazel\Core</Filter>
     </ClInclude>
@@ -1265,6 +1268,9 @@
     <ClCompile Include="src\Hazel\Core\Application.cpp">
       <Filter>src\Hazel\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Hazel\Core\Input.cpp">
+      <Filter>src\Hazel\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\Hazel\Core\Layer.cpp">
       <Filter>src\Hazel\Core</Filter>
     </ClCompile>
@@ -1272,6 +1278,9 @@
       <Filter>src\Hazel\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Hazel\Core\Log.cpp">
+      <Filter>src\Hazel\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hazel\Core\Window.cpp">
       <Filter>src\Hazel\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Hazel\ImGui\ImGuiBuild.cpp">
