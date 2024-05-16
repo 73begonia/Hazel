@@ -31,13 +31,13 @@ namespace Hazel {
 
 	float Input::GetMouseX()
 	{
-		auto [x, y] = GetMousePosition();
+		auto[x, y] = GetMousePosition();
 		return x;
 	}
 
 	float Input::GetMouseY()
 	{
-		auto [x, y] = GetMousePosition();
+		auto[x, y] = GetMousePosition();
 		return y;
 	}
 
