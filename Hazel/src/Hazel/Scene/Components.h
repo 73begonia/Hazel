@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-#include "Hazel/Renderer/Camera.h"
+#include "SceneCamera.h"
 
 namespace Hazel {
 
@@ -14,17 +14,6 @@ namespace Hazel {
 		TagComponent(const TagComponent&) = default;
 		TagComponent(const std::string& tag)
 			: Tag(tag) {}
-	};
-
-	struct CameraComponent
-	{
-		Hazel::Camera Camera;
-		bool Primary = true; // TODO: think about moving to Scene
-
-		CameraComponent() = default;
-		CameraComponent(const CameraComponent&) = default;
-		CameraComponent(const glm::mat4& projection)
-			: Camera(projection) {}
 	};
 
 	struct TransformComponent
@@ -48,6 +37,16 @@ namespace Hazel {
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color)
 			: Color(color) {}
+	};
+
+	struct CameraComponent
+	{
+		SceneCamera Camera;
+		bool Primary = true; // TODO: think about moving to Scene
+		bool FixedAspectRatio = false;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
 	};
 
 }
