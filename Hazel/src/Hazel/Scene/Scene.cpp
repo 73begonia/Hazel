@@ -43,7 +43,6 @@ namespace Hazel {
 				{
 					nsc.Instance = nsc.InstantiateScript();
 					nsc.Instance->m_Entity = Entity{ entity, this };
-
 					nsc.Instance->OnCreate();
 				}
 
@@ -59,7 +58,7 @@ namespace Hazel {
 			for (auto entity : view)
 			{
 				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
-
+				
 				if (camera.Primary)
 				{
 					mainCamera = &camera.Camera;
@@ -133,4 +132,6 @@ namespace Hazel {
 	void Scene::OnComponentAdded<NativeScriptComponent>(Entity entity, NativeScriptComponent& component)
 	{
 	}
+
+
 }

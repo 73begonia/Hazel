@@ -22,4 +22,6 @@ namespace Hazel {
 		Entity m_Entity;
 		friend class Scene;
 	};
+
 }
+

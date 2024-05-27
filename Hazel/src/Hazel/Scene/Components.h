@@ -65,7 +65,7 @@ namespace Hazel {
 	{
 		ScriptableEntity* Instance = nullptr;
 
-		ScriptableEntity* (*InstantiateScript)();
+		ScriptableEntity*(*InstantiateScript)();
 		void (*DestroyScript)(NativeScriptComponent*);
 
 		template<typename T>
