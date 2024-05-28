@@ -123,7 +123,7 @@ namespace Hazel {
 		{
 			const auto& camera = view.get<CameraComponent>(entity);
 			if (camera.Primary)
-				return Entity{ entity, this };
+				return Entity{entity, this};
 		}
 		return {};
 	}
