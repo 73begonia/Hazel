@@ -54,7 +54,7 @@ namespace Hazel {
 
 		if (GetSaveFileNameA(&ofn) == TRUE)
 			return ofn.lpstrFile;
-
+		
 		return std::string();
 	}
 
