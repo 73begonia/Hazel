@@ -510,6 +510,7 @@ namespace Hazel {
 	{
 		m_SceneState = SceneState::Edit;
 		m_ActiveScene->OnRuntimeStop();
+
 	}
 
 }

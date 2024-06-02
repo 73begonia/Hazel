@@ -11,7 +11,6 @@
 #include <spdlog/fmt/ostr.h>
 #pragma warning(pop)
 
-
 namespace Hazel {
 
 	class Log

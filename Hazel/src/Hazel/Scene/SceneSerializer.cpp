@@ -113,9 +113,9 @@ namespace Hazel {
 	{
 		switch (bodyType)
 		{
-		case Rigidbody2DComponent::BodyType::Static:    return "Static";
-		case Rigidbody2DComponent::BodyType::Dynamic:   return "Dynamic";
-		case Rigidbody2DComponent::BodyType::Kinematic: return "Kinematic";
+			case Rigidbody2DComponent::BodyType::Static:    return "Static";
+			case Rigidbody2DComponent::BodyType::Dynamic:   return "Dynamic";
+			case Rigidbody2DComponent::BodyType::Kinematic: return "Kinematic";
 		}
 
 		HZ_CORE_ASSERT(false, "Unknown body type");
@@ -127,7 +127,7 @@ namespace Hazel {
 		if (bodyTypeString == "Static")    return Rigidbody2DComponent::BodyType::Static;
 		if (bodyTypeString == "Dynamic")   return Rigidbody2DComponent::BodyType::Dynamic;
 		if (bodyTypeString == "Kinematic") return Rigidbody2DComponent::BodyType::Kinematic;
-
+	
 		HZ_CORE_ASSERT(false, "Unknown body type");
 		return Rigidbody2DComponent::BodyType::Static;
 	}
@@ -139,8 +139,10 @@ namespace Hazel {
 
 	static void SerializeEntity(YAML::Emitter& out, Entity entity)
 	{
+		HZ_CORE_ASSERT(entity.HasComponent<IDComponent>());
+
 		out << YAML::BeginMap; // Entity
-		out << YAML::Key << "Entity" << YAML::Value << "12837192831273"; // TODO: Entity ID goes here
+		out << YAML::Key << "Entity" << YAML::Value << entity.GetUUID();
 
 		if (entity.HasComponent<TagComponent>())
 		{
@@ -240,13 +242,13 @@ namespace Hazel {
 		out << YAML::Key << "Scene" << YAML::Value << "Untitled";
 		out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
 		m_Scene->m_Registry.each([&](auto entityID)
-			{
-				Entity entity = { entityID, m_Scene.get() };
-		if (!entity)
-			return;
+		{
+			Entity entity = { entityID, m_Scene.get() };
+			if (!entity)
+				return;
 
-		SerializeEntity(out, entity);
-			});
+			SerializeEntity(out, entity);
+		});
 		out << YAML::EndSeq;
 		out << YAML::EndMap;
 
@@ -283,7 +285,7 @@ namespace Hazel {
 		{
 			for (auto entity : entities)
 			{
-				uint64_t uuid = entity["Entity"].as<uint64_t>(); // TODO
+				uint64_t uuid = entity["Entity"].as<uint64_t>();
 
 				std::string name;
 				auto tagComponent = entity["TagComponent"];
@@ -292,7 +294,7 @@ namespace Hazel {
 
 				HZ_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
 
-				Entity deserializedEntity = m_Scene->CreateEntity(name);
+				Entity deserializedEntity = m_Scene->CreateEntityWithUUID(uuid, name);
 
 				auto transformComponent = entity["TransformComponent"];
 				if (transformComponent)
