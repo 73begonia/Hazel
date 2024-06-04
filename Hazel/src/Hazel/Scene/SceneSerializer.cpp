@@ -113,9 +113,9 @@ namespace Hazel {
 	{
 		switch (bodyType)
 		{
-			case Rigidbody2DComponent::BodyType::Static:    return "Static";
-			case Rigidbody2DComponent::BodyType::Dynamic:   return "Dynamic";
-			case Rigidbody2DComponent::BodyType::Kinematic: return "Kinematic";
+		case Rigidbody2DComponent::BodyType::Static:    return "Static";
+		case Rigidbody2DComponent::BodyType::Dynamic:   return "Dynamic";
+		case Rigidbody2DComponent::BodyType::Kinematic: return "Kinematic";
 		}
 
 		HZ_CORE_ASSERT(false, "Unknown body type");
@@ -127,7 +127,7 @@ namespace Hazel {
 		if (bodyTypeString == "Static")    return Rigidbody2DComponent::BodyType::Static;
 		if (bodyTypeString == "Dynamic")   return Rigidbody2DComponent::BodyType::Dynamic;
 		if (bodyTypeString == "Kinematic") return Rigidbody2DComponent::BodyType::Kinematic;
-	
+
 		HZ_CORE_ASSERT(false, "Unknown body type");
 		return Rigidbody2DComponent::BodyType::Static;
 	}
@@ -204,6 +204,19 @@ namespace Hazel {
 			out << YAML::EndMap; // SpriteRendererComponent
 		}
 
+		if (entity.HasComponent<CircleRendererComponent>())
+		{
+			out << YAML::Key << "CircleRendererComponent";
+			out << YAML::BeginMap; // CircleRendererComponent
+
+			auto& circleRendererComponent = entity.GetComponent<CircleRendererComponent>();
+			out << YAML::Key << "Color" << YAML::Value << circleRendererComponent.Color;
+			out << YAML::Key << "Thickness" << YAML::Value << circleRendererComponent.Thickness;
+			out << YAML::Key << "Fade" << YAML::Value << circleRendererComponent.Fade;
+
+			out << YAML::EndMap; // CircleRendererComponent
+		}
+
 		if (entity.HasComponent<Rigidbody2DComponent>())
 		{
 			out << YAML::Key << "Rigidbody2DComponent";
@@ -242,13 +255,13 @@ namespace Hazel {
 		out << YAML::Key << "Scene" << YAML::Value << "Untitled";
 		out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
 		m_Scene->m_Registry.each([&](auto entityID)
-		{
-			Entity entity = { entityID, m_Scene.get() };
-			if (!entity)
-				return;
+			{
+				Entity entity = { entityID, m_Scene.get() };
+		if (!entity)
+			return;
 
-			SerializeEntity(out, entity);
-		});
+		SerializeEntity(out, entity);
+			});
 		out << YAML::EndSeq;
 		out << YAML::EndMap;
 
@@ -331,6 +344,15 @@ namespace Hazel {
 				{
 					auto& src = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					src.Color = spriteRendererComponent["Color"].as<glm::vec4>();
+				}
+
+				auto circleRendererComponent = entity["CircleRendererComponent"];
+				if (circleRendererComponent)
+				{
+					auto& crc = deserializedEntity.AddComponent<CircleRendererComponent>();
+					crc.Color = circleRendererComponent["Color"].as<glm::vec4>();
+					crc.Thickness = circleRendererComponent["Thickness"].as<float>();
+					crc.Fade = circleRendererComponent["Fade"].as<float>();
 				}
 
 				auto rigidbody2DComponent = entity["Rigidbody2DComponent"];
